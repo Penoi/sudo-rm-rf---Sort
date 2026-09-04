@@ -1,0 +1,25 @@
+==== COMANDO PARA RODAR O CODIGO, PARA ISSO VOCE PRECISA ESTAR NA PASTA "tcd_tinoco/" ====
+PARA COMPILAR -> gcc -O3 -march=native -flto -DNDEBUG -fopenmp     main.c     ordenar/ordena.c     buscar/buscas.c     arquivos/arquivos.c     relatorios/relatorio.c     EXTRA/ordenacao.c     -o programa
+PARA EXECUTAR RODE -> ./programa
+
+============ LIBS QUE VOCE PRECISA TER ============
+
+IF Ubuntu / Debian{
+	sudo apt update
+	sudo apt install build-essential libomp-dev
+}
+ELSE IF Fedora{
+	sudo dnf install gcc gcc-c++ make libgomp
+}
+ELSE IF Arch Linux{
+	sudo pacman -S gcc make
+	
+}
+ELSE IF openSUSE{
+	sudo zypper install gcc gcc-c++ make libgomp1	
+}
+ELSE {
+	return 0
+}
+
+
