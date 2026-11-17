@@ -366,15 +366,3 @@ int gerarRelatorio(const int *vetOriginal, int tam, const char *nomeArquivo); //
 ```
 
 ---
-
-## Limitações conhecidas
-
-- **A opção 3 ordena o vetor carregado no lugar.** Depois dela, ordenar de novo, mesmo com outro algoritmo, mede o tempo sobre dados já ordenados. Para comparar algoritmos de forma justa, recarregue o arquivo (opção 1) ou use o relatório (opção 4).
-- **"Busca Binaria + Quick Sort" no relatório não ordena antes de buscar.** `medirBuscaBinaria()` roda a busca binária direto sobre uma cópia do vetor original, que pode estar desordenado. O tempo medido é só o da busca, e o resultado pode estar errado.
-- **O relatório mede tempo de CPU (`clock()`), não tempo real.** Em programas com várias threads, `clock()` soma o tempo de todas, então o tempo do Sudorm-rf Sort no `log.txt` tende a aparecer **maior** do que o tempo real. As opções 2 e 3 usam `clock_gettime(CLOCK_MONOTONIC)` e mostram o tempo real.
-- **O relatório não mostra tempos abaixo da resolução do `clock()`.** As buscas costumam aparecer como `0.000…` ou `0.001` ms.
-- **O Quick Sort usa a partição de Lomuto.** Com muitos valores repetidos, ele degrada para O(n²) e pode estourar a pilha em vetores muito grandes.
-- **Tamanho limitado a `int`.** Índices e tamanhos são `int`, então o vetor comporta no máximo ~2,1 bilhões de elementos, e números fora da faixa de `int` não são lidos corretamente.
-- **Mensagem enganosa ao recarregar.** Se já há um vetor carregado e a leitura de um novo arquivo falha, o menu mostra `[OK]` com a contagem do vetor **anterior**, que continua na memória.
-- **Caminhos de arquivo não podem ter espaços** (veja [Formato do arquivo de entrada](#formato-do-arquivo-de-entrada)).
-- **Só POSIX.** `usleep` e `clock_gettime` impedem a compilação nativa no Windows sem MinGW/WSL.
